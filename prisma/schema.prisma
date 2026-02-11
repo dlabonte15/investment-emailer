@@ -1,0 +1,188 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Workstream {
+  id                  Int           @id @default(autoincrement())
+  name                String        @unique
+  description         String?
+  enabled             Boolean       @default(true)
+  cadence             String        // "weekly", "daily", "manual", "custom"
+  cronExpression      String?       // e.g. "0 8 * * 1"
+  triggerLogic        String        // JSON stored as text
+  recipientConfig     String        // JSON stored as text
+  subTemplateLogic    String?       // JSON stored as text
+  dedupeWindowDays    Int           @default(7)
+  escalationThreshold Int           @default(3)
+  autoApprove         Boolean       @default(false)
+  displayOrder        Int           @default(0)
+  templateId          Int
+  template            EmailTemplate @relation(fields: [templateId], references: [id])
+  lastRunAt           DateTime?
+  nextRunAt           DateTime?
+  batches             SendBatch[]
+  dedupeLogs          DedupeLog[]
+  escalations         Escalation[]
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+}
+
+model EmailTemplate {
+  id           Int          @id @default(autoincrement())
+  name         String       @unique
+  subject      String
+  body         String
+  includeTable Boolean      @default(false)
+  tableColumns String?      // JSON stored as text
+  signature    String       @default("Account Investment Concierge")
+  isDefault    Boolean      @default(false)
+  workstreams  Workstream[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model IndustryContact {
+  id               Int      @id @default(autoincrement())
+  primaryIndustry  String   @unique
+  selName          String
+  selEmail         String
+  opsManagerName   String
+  opsManagerEmail  String
+  conciergeName    String   @default("US Consulting Account Investment Concierge")
+  conciergeEmail   String   @default("accountinvestmentcommittee@deloitte.com")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model SendBatch {
+  id           Int         @id @default(autoincrement())
+  workstreamId Int
+  workstream   Workstream  @relation(fields: [workstreamId], references: [id])
+  triggeredBy  String      // "auto" or user email
+  triggerType  String      // "scheduled", "manual", "test"
+  status       String      // "pending_approval", "approved", "sending", "completed"
+  totalCount   Int
+  sentCount    Int         @default(0)
+  failedCount  Int         @default(0)
+  skippedCount Int         @default(0)
+  startedAt    DateTime    @default(now())
+  completedAt  DateTime?
+  emails       SendEmail[]
+}
+
+model SendEmail {
+  id               Int       @id @default(autoincrement())
+  batchId          Int
+  batch            SendBatch @relation(fields: [batchId], references: [id])
+  investmentId     String
+  accountName      String
+  investmentName   String
+  investmentStatus String
+  toEmail          String
+  toName           String?
+  ccEmails         String?   // comma-separated
+  subject          String
+  body             String
+  result           String    // "sent", "failed", "skipped", "pending"
+  errorMessage     String?
+  isTest           Boolean   @default(false)
+  openedAt         DateTime?
+  openCount        Int       @default(0)
+  sentAt           DateTime  @default(now())
+}
+
+model DedupeLog {
+  id             Int        @id @default(autoincrement())
+  workstreamId   Int
+  workstream     Workstream @relation(fields: [workstreamId], references: [id])
+  investmentId   String
+  recipientEmail String
+  sentAt         DateTime   @default(now())
+
+  @@unique([workstreamId, investmentId, recipientEmail])
+}
+
+model Escalation {
+  id             Int        @id @default(autoincrement())
+  workstreamId   Int
+  workstream     Workstream @relation(fields: [workstreamId], references: [id])
+  investmentId   String
+  accountName    String
+  investmentName String
+  currentStatus  String
+  sendCount      Int
+  firstEmailedAt DateTime
+  lastEmailedAt  DateTime
+  resolved       Boolean    @default(false)
+  resolvedAt     DateTime?
+  resolvedBy     String?
+  notes          String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@unique([workstreamId, investmentId])
+}
+
+model GlobalSettings {
+  id                       Int     @id @default(1)
+  defaultSenderName        String  @default("Account Investment Concierge")
+  defaultSenderEmail       String  @default("")
+  globalCcEmails           String  @default("")
+  sendAsHtml               Boolean @default(true)
+  timezone                 String  @default("America/New_York")
+  dataSourceType           String  @default("upload")
+  onedriveFileId           String?
+  excelSheetName           String  @default("FY26  Account Investments_  (2)")
+  dataFreshnessWarningDays Int     @default(7)
+  enableOpenTracking       Boolean @default(false)
+  defaultDedupeWindowDays  Int     @default(7)
+  defaultEscalationThreshold Int   @default(3)
+}
+
+model ColumnMapping {
+  id            Int    @id @default(autoincrement())
+  internalField String @unique
+  excelColumn   String
+}
+
+model DataLoadLog {
+  id         Int      @id @default(autoincrement())
+  sourceType String   // "upload" or "onedrive"
+  fileName   String?
+  rowCount   Int
+  loadedAt   DateTime @default(now())
+  loadedBy   String
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  email       String    @unique
+  name        String
+  role        String    @default("sender")
+  lastLoginAt DateTime?
+  createdAt   DateTime  @default(now())
+}
+
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  userId     String
+  action     String
+  entityType String
+  entityId   String?
+  oldValue   String?
+  newValue   String?
+  createdAt  DateTime @default(now())
+}
+
+model InvestmentNote {
+  id           Int      @id @default(autoincrement())
+  investmentId String
+  note         String
+  createdBy    String
+  createdAt    DateTime @default(now())
+}
