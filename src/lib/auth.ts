@@ -1,5 +1,5 @@
 import { NextAuthOptions } from "next-auth";
-import AzureADProvider from "next-auth/providers/azure-ad";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
 
 async function refreshAccessToken(token: any) {
@@ -34,8 +34,45 @@ async function refreshAccessToken(token: any) {
   }
 }
 
-export const authOptions: NextAuthOptions = {
-  providers: [
+// Build providers list: always include Credentials, optionally include Azure AD
+const providers: NextAuthOptions["providers"] = [
+  CredentialsProvider({
+    name: "Email",
+    credentials: {
+      email: { label: "Email", type: "email", placeholder: "you@example.com" },
+      password: { label: "Password", type: "password" },
+    },
+    async authorize(credentials) {
+      if (!credentials?.email || !credentials?.password) {
+        return null;
+      }
+
+      // For local dev: accept any non-empty password
+      const user = await prisma.user.upsert({
+        where: { email: credentials.email },
+        update: { lastLoginAt: new Date() },
+        create: {
+          email: credentials.email,
+          name: credentials.email.split("@")[0],
+          role: "sender",
+        },
+      });
+
+      return {
+        id: String(user.id),
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      };
+    },
+  }),
+];
+
+// Only add Azure AD provider if env vars are configured
+if (process.env.AZURE_AD_CLIENT_ID) {
+  // Dynamic import isn't needed — conditional push keeps it simple
+  const AzureADProvider = require("next-auth/providers/azure-ad").default;
+  providers.push(
     AzureADProvider({
       clientId: process.env.AZURE_AD_CLIENT_ID!,
       clientSecret: process.env.AZURE_AD_CLIENT_SECRET!,
@@ -46,11 +83,24 @@ export const authOptions: NextAuthOptions = {
             "openid profile email offline_access Mail.Send Files.Read.All User.Read",
         },
       },
-    }),
-  ],
+    })
+  );
+}
+
+export const authOptions: NextAuthOptions = {
+  providers,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-    async jwt({ token, account }) {
-      // Initial sign-in: persist tokens from the provider
+    async jwt({ token, user, account }) {
+      // Credentials sign-in: user object is returned by authorize()
+      if (user && !account?.access_token) {
+        token.role = (user as any).role;
+        return token;
+      }
+
+      // Azure AD sign-in: persist tokens from the provider
       if (account) {
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;
@@ -59,7 +109,7 @@ export const authOptions: NextAuthOptions = {
           : Date.now() + 3600 * 1000;
 
         // Upsert user record and set role
-        const user = await prisma.user.upsert({
+        const dbUser = await prisma.user.upsert({
           where: { email: token.email! },
           update: { lastLoginAt: new Date() },
           create: {
@@ -68,8 +118,13 @@ export const authOptions: NextAuthOptions = {
             role: "sender",
           },
         });
-        token.role = user.role;
+        token.role = dbUser.role;
 
+        return token;
+      }
+
+      // No access token means credentials login — no refresh needed
+      if (!token.accessToken) {
         return token;
       }
 
@@ -88,7 +143,5 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  pages: {
-    signIn: "/api/auth/signin",
-  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
