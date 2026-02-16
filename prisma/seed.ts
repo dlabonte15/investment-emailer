@@ -317,6 +317,9 @@ Investments Concierge Team`,
   const closedWonTemplate = await prisma.emailTemplate.findUnique({
     where: { name: "Closed JO Won" },
   });
+  const closedLostTemplate = await prisma.emailTemplate.findUnique({
+    where: { name: "Closed JO Lost" },
+  });
   const closedAbandonedTemplate = await prisma.emailTemplate.findUnique({
     where: { name: "Closed Abandoned" },
   });
@@ -340,11 +343,11 @@ Investments Concierge Team`,
         logic: "AND",
       }),
       recipientConfig: JSON.stringify({
-        to: { type: "excel_field", field: "investment_leader_email" },
+        to: [{ source: "excel_column", field: "investment_leader_email" }],
         cc: [
-          { type: "contact_mapping", field: "sel_email" },
-          { type: "contact_mapping", field: "ops_manager_email" },
-          { type: "contact_mapping", field: "concierge_email" },
+          { source: "contact_mapping", field: "sel_email" },
+          { source: "contact_mapping", field: "ops_manager_email" },
+          { source: "contact_mapping", field: "concierge_email" },
         ],
       }),
     },
@@ -366,8 +369,8 @@ Investments Concierge Team`,
         logic: "AND",
       }),
       recipientConfig: JSON.stringify({
-        to: { type: "contact_mapping", field: "sel_email" },
-        cc: [{ type: "contact_mapping", field: "ops_manager_email" }],
+        to: [{ source: "contact_mapping", field: "sel_email" }],
+        cc: [{ source: "contact_mapping", field: "ops_manager_email" }],
       }),
     },
     {
@@ -388,11 +391,11 @@ Investments Concierge Team`,
         logic: "AND",
       }),
       recipientConfig: JSON.stringify({
-        to: { type: "excel_field", field: "investment_leader_email" },
+        to: [{ source: "excel_column", field: "investment_leader_email" }],
         cc: [
-          { type: "contact_mapping", field: "sel_email" },
-          { type: "contact_mapping", field: "ops_manager_email" },
-          { type: "contact_mapping", field: "concierge_email" },
+          { source: "contact_mapping", field: "sel_email" },
+          { source: "contact_mapping", field: "ops_manager_email" },
+          { source: "contact_mapping", field: "concierge_email" },
         ],
       }),
     },
@@ -412,19 +415,16 @@ Investments Concierge Team`,
         ],
         logic: "AND",
       }),
-      subTemplateLogic: JSON.stringify({
-        field: "jupiter_stage",
-        mapping: {
-          "Closed Lost": "Closed JO Lost",
-          "Closed Abandoned": "Closed Abandoned",
-        },
-      }),
+      subTemplateLogic: JSON.stringify([
+        { field: "jupiter_stage", value: "Closed Lost", templateId: closedLostTemplate!.id },
+        { field: "jupiter_stage", value: "Closed Abandoned", templateId: closedAbandonedTemplate!.id },
+      ]),
       recipientConfig: JSON.stringify({
-        to: { type: "excel_field", field: "investment_leader_email" },
+        to: [{ source: "excel_column", field: "investment_leader_email" }],
         cc: [
-          { type: "contact_mapping", field: "sel_email" },
-          { type: "contact_mapping", field: "ops_manager_email" },
-          { type: "contact_mapping", field: "concierge_email" },
+          { source: "contact_mapping", field: "sel_email" },
+          { source: "contact_mapping", field: "ops_manager_email" },
+          { source: "contact_mapping", field: "concierge_email" },
         ],
       }),
     },

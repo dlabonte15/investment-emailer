@@ -240,9 +240,27 @@ export async function runWorkstreamTrigger(
   });
 
   // 5. Load all templates (for sub-template logic)
-  const subTemplateLogic = workstream.subTemplateLogic
-    ? parseJsonField<SubTemplateRule[]>(workstream.subTemplateLogic)
-    : null;
+  let subTemplateLogic: SubTemplateRule[] | null = null;
+  if (workstream.subTemplateLogic) {
+    const raw = parseJsonField<unknown>(workstream.subTemplateLogic);
+    if (Array.isArray(raw)) {
+      subTemplateLogic = raw as SubTemplateRule[];
+    } else if (raw && typeof raw === "object" && "mapping" in (raw as Record<string, unknown>)) {
+      // Legacy format: { field, mapping: { value: templateName } }
+      // Convert to SubTemplateRule[] by looking up template names
+      const legacy = raw as { field: string; mapping: Record<string, string> };
+      const nameToTemplate = new Map<string, number>();
+      const allTpls = await prisma.emailTemplate.findMany({ select: { id: true, name: true } });
+      for (const t of allTpls) nameToTemplate.set(t.name, t.id);
+      subTemplateLogic = Object.entries(legacy.mapping)
+        .map(([value, templateName]) => ({
+          field: legacy.field,
+          value,
+          templateId: nameToTemplate.get(templateName) || 0,
+        }))
+        .filter((r) => r.templateId > 0);
+    }
+  }
   let allTemplates: Map<number, { subject: string; body: string; signature: string }> | null = null;
   if (subTemplateLogic && subTemplateLogic.length > 0) {
     const templateIds = subTemplateLogic.map((r) => r.templateId);
@@ -277,10 +295,22 @@ export async function runWorkstreamTrigger(
   // 7. Filter matching investments
   const trigger = parseJsonField<TriggerLogic>(workstream.triggerLogic);
   const rawRecipientConfig = parseJsonField<Record<string, unknown>>(workstream.recipientConfig);
-  // Normalize: ensure to/cc are arrays (seed data may store single objects)
+  // Normalize: ensure to/cc are arrays and fix legacy field names (type→source, excel_field→excel_column)
+  function normalizeRule(rule: Record<string, unknown>): RecipientRule {
+    const source = (rule.source || rule.type || "excel_column") as string;
+    return {
+      source: source === "excel_field" ? "excel_column" : source as RecipientRule["source"],
+      field: (rule.field || "") as string,
+    };
+  }
+  function normalizeRuleArray(val: unknown): RecipientRule[] {
+    if (!val) return [];
+    const arr = Array.isArray(val) ? val : [val];
+    return arr.filter(Boolean).map((r: Record<string, unknown>) => normalizeRule(r));
+  }
   const recipientConfig: RecipientConfig = {
-    to: Array.isArray(rawRecipientConfig.to) ? rawRecipientConfig.to : [rawRecipientConfig.to].filter(Boolean) as RecipientRule[],
-    cc: Array.isArray(rawRecipientConfig.cc) ? rawRecipientConfig.cc : [rawRecipientConfig.cc].filter(Boolean) as RecipientRule[],
+    to: normalizeRuleArray(rawRecipientConfig.to),
+    cc: normalizeRuleArray(rawRecipientConfig.cc),
   };
   const matchedRows = data.rows.filter((row) =>
     matchesConditions(row, trigger)
