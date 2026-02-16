@@ -89,6 +89,9 @@ if (process.env.AZURE_AD_CLIENT_ID) {
 
 export const authOptions: NextAuthOptions = {
   providers,
+  pages: {
+    signIn: "/signin",
+  },
   session: {
     strategy: "jwt",
   },
