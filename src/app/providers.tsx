@@ -16,7 +16,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             border: "1px solid #334155",
           },
           success: {
-            iconTheme: { primary: "#22c55e", secondary: "#f8fafc" },
+            iconTheme: { primary: "#86BC25", secondary: "#f8fafc" },
           },
           error: {
             iconTheme: { primary: "#ef4444", secondary: "#f8fafc" },

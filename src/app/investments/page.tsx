@@ -428,12 +428,12 @@ export default function InvestmentsPage() {
                 }
               }}
               placeholder="Add a note about this investment..."
-              className="flex-1 px-3 py-2 text-sm bg-slate-800 border border-slate-700 rounded-md text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none"
+              className="flex-1 px-3 py-2 text-sm bg-slate-800 border border-slate-700 rounded-md text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:ring-1 focus:ring-deloitte/30 focus:outline-none"
             />
             <button
               onClick={handleAddNote}
               disabled={!newNote.trim() || addingNote}
-              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 text-sm font-medium text-white bg-deloitte rounded-md hover:bg-deloitte-light disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {addingNote ? "Adding..." : "Add Note"}
             </button>
@@ -482,7 +482,7 @@ export default function InvestmentsPage() {
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="flex-1 min-w-[240px] px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none"
+          className="flex-1 min-w-[240px] px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:ring-1 focus:ring-deloitte/30 focus:outline-none"
         />
         <select
           value={statusFilter}
@@ -490,7 +490,7 @@ export default function InvestmentsPage() {
             setStatusFilter(e.target.value);
             setPage(1);
           }}
-          className="px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none"
+          className="px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 focus:border-deloitte focus:ring-1 focus:ring-deloitte/30 focus:outline-none"
         >
           <option value="">All statuses</option>
           {availableStatuses.map((s) => (
@@ -505,7 +505,7 @@ export default function InvestmentsPage() {
             setIndustryFilter(e.target.value);
             setPage(1);
           }}
-          className="px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none"
+          className="px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 focus:border-deloitte focus:ring-1 focus:ring-deloitte/30 focus:outline-none"
         >
           <option value="">All industries</option>
           {availableIndustries.map((i) => (
@@ -584,7 +584,7 @@ export default function InvestmentsPage() {
                       onClick={() => loadDetail(inv.investmentId)}
                       className="hover:bg-slate-800/30 cursor-pointer"
                     >
-                      <td className="px-3 py-2.5 text-blue-400 font-mono text-xs whitespace-nowrap">
+                      <td className="px-3 py-2.5 text-deloitte font-mono text-xs whitespace-nowrap">
                         {inv.investmentId}
                       </td>
                       <td className="px-3 py-2.5 text-slate-200 max-w-[160px] truncate">
@@ -675,7 +675,7 @@ export default function InvestmentsPage() {
                         onClick={() => setPage(pageNum)}
                         className={`px-2.5 py-1 text-xs rounded-md border ${
                           page === pageNum
-                            ? "bg-blue-600 text-white border-blue-500"
+                            ? "bg-deloitte text-white border-deloitte"
                             : "text-slate-400 border-slate-700 hover:bg-slate-800"
                         }`}
                       >

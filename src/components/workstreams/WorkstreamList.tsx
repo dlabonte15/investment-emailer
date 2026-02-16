@@ -217,7 +217,7 @@ function SortableWorkstreamCard({
         cursor-pointer rounded-lg border p-4 transition-colors
         ${
           isSelected
-            ? "border-blue-500 bg-blue-900/20"
+            ? "border-deloitte bg-deloitte-dark/20"
             : "border-slate-700 bg-slate-900 hover:border-slate-600"
         }
       `}
@@ -268,7 +268,7 @@ function SortableWorkstreamCard({
           onClick={(e) => onToggle(ws, e)}
           className={`
             shrink-0 ml-2 relative inline-flex h-5 w-9 items-center rounded-full transition-colors
-            ${ws.enabled ? "bg-blue-600" : "bg-slate-600"}
+            ${ws.enabled ? "bg-deloitte" : "bg-slate-600"}
           `}
         >
           <span

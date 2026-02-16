@@ -193,7 +193,7 @@ export default function DashboardPage() {
       <div>
         <PageHeader
           title="Dashboard"
-          description="Investment email automation overview"
+          description="Deloitte investment email automation overview"
         />
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -223,18 +223,18 @@ export default function DashboardPage() {
     <div>
       <PageHeader
         title="Dashboard"
-        description="Investment email automation overview"
+        description="Deloitte investment email automation overview"
       />
 
       <DataFreshnessBanner />
 
       {/* Pending Approval Banner */}
       {data && data.pendingApproval.length > 0 && (
-        <div className="mb-4 rounded-lg border border-blue-500/30 bg-blue-900/20 p-3">
+        <div className="mb-4 rounded-lg border border-deloitte/30 bg-deloitte-dark/20 p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <svg
-                className="h-5 w-5 text-blue-400"
+                className="h-5 w-5 text-deloitte"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -246,7 +246,7 @@ export default function DashboardPage() {
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <p className="text-sm text-blue-300">
+              <p className="text-sm text-deloitte-light">
                 <span className="font-medium">
                   {data.pendingApproval.reduce(
                     (s, b) => s + b.emailCount,
@@ -263,7 +263,7 @@ export default function DashboardPage() {
             </div>
             <Link
               href="/preview"
-              className="rounded px-3 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 transition-colors"
+              className="rounded px-3 py-1 text-xs font-medium bg-deloitte/20 text-deloitte-light hover:bg-deloitte/30 transition-colors"
             >
               Review
             </Link>
@@ -411,7 +411,7 @@ export default function DashboardPage() {
                   onClick={() => handleToggleWorkstream(ws)}
                   disabled={togglingWorkstream === ws.id}
                   className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ${
-                    ws.enabled ? "bg-blue-600" : "bg-slate-600"
+                    ws.enabled ? "bg-deloitte" : "bg-slate-600"
                   } ${togglingWorkstream === ws.id ? "opacity-50" : ""}`}
                 >
                   <span
@@ -486,7 +486,7 @@ export default function DashboardPage() {
           {data?.workstreamCards.length === 0 && (
             <p className="text-sm text-slate-500 col-span-2">
               No workstreams configured.{" "}
-              <Link href="/workstreams" className="text-blue-400 hover:underline">
+              <Link href="/workstreams" className="text-deloitte hover:underline">
                 Create one
               </Link>
             </p>
@@ -535,7 +535,7 @@ export default function DashboardPage() {
                         minute: "2-digit",
                       })}
                     </span>
-                    <span className="text-xs text-blue-400 w-32 flex-shrink-0 truncate">
+                    <span className="text-xs text-deloitte w-32 flex-shrink-0 truncate">
                       {item.workstreamName}
                     </span>
                     <span className="text-sm text-slate-300 flex-1 truncate">
@@ -611,7 +611,7 @@ function SummaryCard({
   href?: string;
 }) {
   const colorMap = {
-    blue: "border-blue-500/20 text-blue-400",
+    blue: "border-deloitte/20 text-deloitte",
     green: "border-green-500/20 text-green-400",
     amber: "border-amber-500/20 text-amber-400",
     red: "border-red-500/20 text-red-400",

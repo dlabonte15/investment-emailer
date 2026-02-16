@@ -62,7 +62,7 @@ const statusColors: Record<string, string> = {
 
 const batchStatusColors: Record<string, string> = {
   pending_approval: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-  approved: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+  approved: "bg-deloitte/20 text-deloitte border-deloitte/30",
   sending: "bg-purple-500/20 text-purple-400 border-purple-500/30",
   completed: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
 };
@@ -313,7 +313,7 @@ export default function PreviewPage() {
               <button
                 key={batch.id}
                 onClick={() => loadBatchDetail(batch.id)}
-                className="w-full text-left rounded-lg bg-slate-900 border border-slate-700 p-4 hover:border-blue-500/50 transition-colors"
+                className="w-full text-left rounded-lg bg-slate-900 border border-slate-700 p-4 hover:border-deloitte/50 transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -416,7 +416,7 @@ export default function PreviewPage() {
             )}
             <div>
               <span className="text-slate-500">Will send:</span>{" "}
-              <span className="text-blue-400">{totalToSend}</span>
+              <span className="text-deloitte">{totalToSend}</span>
             </div>
           </div>
           <span
@@ -475,7 +475,7 @@ export default function PreviewPage() {
           <button
             onClick={handleApproveAndSend}
             disabled={sending || totalToSend === 0}
-            className="px-4 py-1.5 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-1.5 text-sm font-medium text-white bg-deloitte rounded-md hover:bg-deloitte-light disabled:opacity-50 disabled:cursor-not-allowed"
             title="Ctrl+Enter"
           >
             {sending
@@ -500,7 +500,7 @@ export default function PreviewPage() {
                   onChange={(e) =>
                     e.target.checked ? selectAll() : deselectAll()
                   }
-                  className="rounded border-slate-600 bg-slate-800 text-blue-500 focus:ring-blue-500/30"
+                  className="rounded border-slate-600 bg-slate-800 text-deloitte focus:ring-deloitte/30"
                 />
               </th>
               <th className="px-3 py-2.5 text-left text-slate-400 font-medium">
@@ -656,7 +656,7 @@ function EmailRow({
                   type="checkbox"
                   checked={isSelected}
                   onChange={onToggleSelect}
-                  className="rounded border-slate-600 bg-slate-800 text-blue-500 focus:ring-blue-500/30"
+                  className="rounded border-slate-600 bg-slate-800 text-deloitte focus:ring-deloitte/30"
                 />
               )}
             </div>
@@ -687,7 +687,7 @@ function EmailRow({
                 <span
                   className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border ${
                     isReIncluded
-                      ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                      ? "bg-deloitte/20 text-deloitte border-deloitte/30"
                       : statusColors[email.result] ||
                         "bg-slate-500/20 text-slate-400"
                   }`}

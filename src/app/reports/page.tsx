@@ -112,13 +112,13 @@ export default function ReportsPage() {
         <div className="flex gap-2">
           <a
             href="/api/reports/export?type=all&format=xlsx"
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 transition-colors whitespace-nowrap"
+            className="rounded-md bg-deloitte px-4 py-2 text-sm font-medium text-white hover:bg-deloitte-light transition-colors whitespace-nowrap"
           >
             Export Excel
           </a>
           <a
             href="/api/reports/export?type=all&format=pdf"
-            className="rounded-md border border-blue-500 px-4 py-2 text-sm font-medium text-blue-400 hover:bg-blue-500/10 transition-colors whitespace-nowrap"
+            className="rounded-md border border-deloitte px-4 py-2 text-sm font-medium text-deloitte hover:bg-deloitte/10 transition-colors whitespace-nowrap"
           >
             Export PDF
           </a>
@@ -133,7 +133,7 @@ export default function ReportsPage() {
             onClick={() => setTab(t.key)}
             className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
               tab === t.key
-                ? "border-blue-500 text-blue-400"
+                ? "border-deloitte text-deloitte"
                 : "border-transparent text-slate-400 hover:text-slate-200"
             }`}
           >
@@ -198,7 +198,7 @@ function WeeklySummaryView({ data }: { data: WeeklySummary }) {
                 <span className="text-xs text-slate-400">{week.sent}</span>
                 <div className="w-full flex items-end justify-center" style={{ height: "80px" }}>
                   <div
-                    className="w-full max-w-12 rounded-t bg-blue-500/60"
+                    className="w-full max-w-12 rounded-t bg-deloitte/60"
                     style={{ height: `${Math.max(height, 4)}%` }}
                   />
                 </div>
@@ -321,7 +321,7 @@ function PerformanceView({ data }: { data: PerformanceData }) {
                           }}
                         />
                       )}
-                      <div className="bg-blue-500/60 flex-1" />
+                      <div className="bg-deloitte/60 flex-1" />
                     </div>
                   </div>
                   <span className="text-xs text-slate-600">
@@ -442,7 +442,7 @@ function OpenTrackingView({ data }: { data: OpenTrackingData }) {
                     <td className="py-2 pr-4 text-slate-400 truncate max-w-[200px]">
                       {email.subject}
                     </td>
-                    <td className="py-2 pr-4 text-blue-400 text-xs">
+                    <td className="py-2 pr-4 text-deloitte text-xs">
                       {email.workstreamName}
                     </td>
                     <td className="py-2 text-slate-500 text-xs">
@@ -469,7 +469,7 @@ function StatCard({
   color: "blue" | "green" | "red" | "amber" | "slate" | "emerald";
 }) {
   const colorMap = {
-    blue: "text-blue-400",
+    blue: "text-deloitte",
     green: "text-green-400",
     red: "text-red-400",
     amber: "text-amber-400",

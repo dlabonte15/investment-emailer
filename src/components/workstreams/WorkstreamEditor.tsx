@@ -257,7 +257,7 @@ export default function WorkstreamEditor({
             value={ws.name}
             onChange={(e) => update("name", e.target.value)}
             placeholder="e.g., Earmarked Investments"
-            className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+            className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
           />
         </div>
         <div>
@@ -269,7 +269,7 @@ export default function WorkstreamEditor({
             value={ws.description}
             onChange={(e) => update("description", e.target.value)}
             placeholder="Optional description"
-            className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+            className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
           />
         </div>
       </div>
@@ -281,7 +281,7 @@ export default function WorkstreamEditor({
           <select
             value={ws.cadence}
             onChange={(e) => update("cadence", e.target.value)}
-            className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+            className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
           >
             <option value="manual">Manual Only</option>
             <option value="daily">Daily</option>
@@ -295,7 +295,7 @@ export default function WorkstreamEditor({
               value={ws.cronExpression}
               onChange={(e) => update("cronExpression", e.target.value)}
               placeholder="0 8 * * 1 (Mon 8am)"
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 font-mono placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 font-mono placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
           )}
 
@@ -305,7 +305,7 @@ export default function WorkstreamEditor({
               value={ws.cronExpression}
               onChange={(e) => update("cronExpression", e.target.value)}
               placeholder="0 8 * * 1 (day + time)"
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 font-mono placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 font-mono placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
           )}
 
@@ -315,7 +315,7 @@ export default function WorkstreamEditor({
               value={ws.cronExpression}
               onChange={(e) => update("cronExpression", e.target.value)}
               placeholder="0 8 * * * (time)"
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 font-mono placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 font-mono placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
           )}
         </div>
@@ -348,7 +348,7 @@ export default function WorkstreamEditor({
           onChange={(e) =>
             update("templateId", e.target.value ? parseInt(e.target.value) : null)
           }
-          className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+          className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
         >
           <option value="">Select template...</option>
           {templates.map((t) => (
@@ -365,7 +365,7 @@ export default function WorkstreamEditor({
               type="checkbox"
               checked={showSubTemplate}
               onChange={(e) => setShowSubTemplate(e.target.checked)}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-blue-500"
+              className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-deloitte"
             />
             <span className="text-sm text-slate-300">
               Conditional template selection
@@ -388,7 +388,7 @@ export default function WorkstreamEditor({
                       updateSubTemplateRule(index, { field: e.target.value })
                     }
                     placeholder="field name"
-                    className="w-36 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 font-mono placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+                    className="w-36 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 font-mono placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
                   />
                   <span className="text-xs text-slate-400">=</span>
                   <input
@@ -398,7 +398,7 @@ export default function WorkstreamEditor({
                       updateSubTemplateRule(index, { value: e.target.value })
                     }
                     placeholder="value"
-                    className="w-36 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+                    className="w-36 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
                   />
                   <span className="text-xs text-slate-400">use</span>
                   <select
@@ -408,7 +408,7 @@ export default function WorkstreamEditor({
                         templateId: parseInt(e.target.value) || 0,
                       })
                     }
-                    className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+                    className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
                   >
                     <option value="">Select template...</option>
                     {templates.map((t) => (
@@ -455,7 +455,7 @@ export default function WorkstreamEditor({
               onChange={(e) =>
                 update("dedupeWindowDays", parseInt(e.target.value) || 0)
               }
-              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             />
           </div>
           <div>
@@ -469,7 +469,7 @@ export default function WorkstreamEditor({
               onChange={(e) =>
                 update("escalationThreshold", parseInt(e.target.value) || 3)
               }
-              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             />
           </div>
           <div className="flex items-end">
@@ -478,7 +478,7 @@ export default function WorkstreamEditor({
                 type="checkbox"
                 checked={ws.autoApprove}
                 onChange={(e) => update("autoApprove", e.target.checked)}
-                className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-blue-500"
+                className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-deloitte"
               />
               <span className="text-sm text-slate-300">
                 Auto-approve sends
@@ -503,7 +503,7 @@ export default function WorkstreamEditor({
         <button
           onClick={handleSave}
           disabled={saving}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 disabled:opacity-50 transition-colors"
+          className="rounded-md bg-deloitte px-4 py-2 text-sm font-medium text-white hover:bg-deloitte-light disabled:opacity-50 transition-colors"
         >
           {saving
             ? "Saving..."

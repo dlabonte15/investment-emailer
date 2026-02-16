@@ -115,20 +115,20 @@ export default function UserManagement() {
               placeholder="Email"
               value={newEmail}
               onChange={(e) => setNewEmail(e.target.value)}
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
             <input
               type="text"
               placeholder="Name"
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
             <div className="flex gap-2">
               <select
                 value={newRole}
                 onChange={(e) => setNewRole(e.target.value)}
-                className="flex-1 rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+                className="flex-1 rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
               >
                 <option value="sender">Sender</option>
                 <option value="admin">Admin</option>
@@ -136,7 +136,7 @@ export default function UserManagement() {
               <button
                 onClick={handleAdd}
                 disabled={adding || !newEmail || !newName}
-                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 disabled:opacity-50 transition-colors"
+                className="rounded-md bg-deloitte px-4 py-2 text-sm font-medium text-white hover:bg-deloitte-light disabled:opacity-50 transition-colors"
               >
                 {adding ? "..." : "Add"}
               </button>
@@ -174,7 +174,7 @@ export default function UserManagement() {
                   <select
                     value={user.role}
                     onChange={(e) => handleRoleChange(user, e.target.value)}
-                    className="rounded border border-slate-600 bg-slate-800 px-2 py-1 text-xs text-slate-200 focus:border-blue-500 focus:outline-none"
+                    className="rounded border border-slate-600 bg-slate-800 px-2 py-1 text-xs text-slate-200 focus:border-deloitte focus:outline-none"
                   >
                     <option value="sender">Sender</option>
                     <option value="admin">Admin</option>

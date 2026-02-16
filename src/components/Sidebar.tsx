@@ -120,9 +120,13 @@ export default function Sidebar() {
     >
       {/* Header */}
       <div className="flex items-center justify-between h-14 px-3 border-b border-slate-700">
-        {!collapsed && (
-          <span className="text-sm font-semibold text-slate-200 truncate">
-            Investment Emailer
+        {!collapsed ? (
+          <span className="text-lg font-bold text-white truncate">
+            Deloitte<span className="text-deloitte">.</span>
+          </span>
+        ) : (
+          <span className="text-lg font-bold text-white">
+            D<span className="text-deloitte">.</span>
           </span>
         )}
         <button
@@ -150,7 +154,7 @@ export default function Sidebar() {
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2 mx-1.5 rounded-md text-sm transition-colors ${
                 active
-                  ? "bg-slate-800 text-blue-400 border-l-2 border-blue-400"
+                  ? "bg-slate-800 text-deloitte border-l-2 border-deloitte"
                   : "text-slate-400 hover:bg-slate-800/50 hover:text-slate-200"
               }`}
               title={collapsed ? item.label : undefined}
@@ -166,7 +170,7 @@ export default function Sidebar() {
       {session?.user && !collapsed && (
         <div className="p-3 border-t border-slate-700">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-xs font-medium text-white">
+            <div className="w-7 h-7 rounded-full bg-deloitte flex items-center justify-center text-xs font-medium text-white">
               {session.user.name?.charAt(0)?.toUpperCase() ?? "U"}
             </div>
             <div className="flex-1 min-w-0">

@@ -101,7 +101,7 @@ export default function TemplateList({
             cursor-pointer rounded-lg border p-4 transition-colors
             ${
               selectedId === template.id
-                ? "border-blue-500 bg-blue-900/20"
+                ? "border-deloitte bg-deloitte-dark/20"
                 : "border-slate-700 bg-slate-900 hover:border-slate-600"
             }
           `}

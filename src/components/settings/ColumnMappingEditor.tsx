@@ -111,7 +111,7 @@ export default function ColumnMappingEditor() {
                     onChange={(e) =>
                       updateMapping(index, "internalField", e.target.value)
                     }
-                    className="w-full rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 font-mono focus:border-blue-500 focus:outline-none"
+                    className="w-full rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 font-mono focus:border-deloitte focus:outline-none"
                   />
                 </td>
                 <td className="py-2 pr-2">
@@ -121,7 +121,7 @@ export default function ColumnMappingEditor() {
                     onChange={(e) =>
                       updateMapping(index, "excelColumn", e.target.value)
                     }
-                    className="w-full rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+                    className="w-full rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
                   />
                 </td>
                 <td className="py-2">
@@ -161,7 +161,7 @@ export default function ColumnMappingEditor() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 disabled:opacity-50 transition-colors"
+          className="rounded-md bg-deloitte px-4 py-2 text-sm font-medium text-white hover:bg-deloitte-light disabled:opacity-50 transition-colors"
         >
           {saving ? "Saving..." : "Save Mappings"}
         </button>

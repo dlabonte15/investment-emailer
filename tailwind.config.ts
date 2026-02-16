@@ -5,6 +5,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        deloitte: {
+          DEFAULT: "#86BC25",
+          light: "#9FD146",
+          dark: "#6B9A1E",
+        },
         status: {
           earmarked: "#f59e0b",
           submitted: "#3b82f6",

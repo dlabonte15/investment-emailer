@@ -135,7 +135,7 @@ function RecipientRuleList({
                 source: e.target.value as RecipientRule["source"],
               })
             }
-            className="w-40 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+            className="w-40 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
           >
             <option value="excel_column">From Excel</option>
             <option value="contact_mapping">From Contacts</option>
@@ -147,7 +147,7 @@ function RecipientRuleList({
             <select
               value={rule.field}
               onChange={(e) => onUpdate(index, { field: e.target.value })}
-              className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             >
               <option value="">Select field...</option>
               {EXCEL_EMAIL_FIELDS.map((f) => (
@@ -162,7 +162,7 @@ function RecipientRuleList({
             <select
               value={rule.field}
               onChange={(e) => onUpdate(index, { field: e.target.value })}
-              className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             >
               <option value="">Select contact...</option>
               {CONTACT_MAPPING_FIELDS.map((f) => (
@@ -179,7 +179,7 @@ function RecipientRuleList({
               value={rule.field}
               onChange={(e) => onUpdate(index, { field: e.target.value })}
               placeholder="email@example.com"
-              className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
           )}
 

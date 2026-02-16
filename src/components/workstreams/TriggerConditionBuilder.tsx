@@ -76,7 +76,7 @@ export default function TriggerConditionBuilder({
           Trigger Conditions
         </label>
         {matchCount !== null && matchCount !== undefined && (
-          <span className="rounded bg-blue-900/30 px-2 py-0.5 text-xs text-blue-300">
+          <span className="rounded bg-deloitte-dark/30 px-2 py-0.5 text-xs text-deloitte-light">
             {matchCount} investment{matchCount !== 1 ? "s" : ""} match
           </span>
         )}
@@ -89,7 +89,7 @@ export default function TriggerConditionBuilder({
             onClick={() => onChange({ ...value, logic: "AND" })}
             className={`rounded px-2.5 py-1 text-xs font-medium transition-colors ${
               value.logic === "AND"
-                ? "bg-blue-600 text-white"
+                ? "bg-deloitte text-white"
                 : "bg-slate-800 text-slate-400 hover:bg-slate-700"
             }`}
           >
@@ -99,7 +99,7 @@ export default function TriggerConditionBuilder({
             onClick={() => onChange({ ...value, logic: "OR" })}
             className={`rounded px-2.5 py-1 text-xs font-medium transition-colors ${
               value.logic === "OR"
-                ? "bg-blue-600 text-white"
+                ? "bg-deloitte text-white"
                 : "bg-slate-800 text-slate-400 hover:bg-slate-700"
             }`}
           >
@@ -126,7 +126,7 @@ export default function TriggerConditionBuilder({
               onChange={(e) =>
                 updateCondition(index, { field: e.target.value })
               }
-              className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             >
               <option value="">Select field...</option>
               {FIELDS.map((f) => (
@@ -142,7 +142,7 @@ export default function TriggerConditionBuilder({
               onChange={(e) =>
                 updateCondition(index, { operator: e.target.value })
               }
-              className="w-44 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="w-44 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             >
               {OPERATORS.map((op) => (
                 <option key={op.value} value={op.value}>
@@ -171,7 +171,7 @@ export default function TriggerConditionBuilder({
                       ? "Number of days"
                       : "Value"
                 }
-                className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+                className="flex-1 rounded border border-slate-600 bg-slate-800 px-2 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
               />
             )}
 

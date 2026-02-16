@@ -223,7 +223,7 @@ export default function ContactMappingTable({
           </a>
           <button
             onClick={() => setShowAddRow(!showAddRow)}
-            className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-500 transition-colors"
+            className="rounded-md bg-deloitte px-3 py-1.5 text-xs font-medium text-white hover:bg-deloitte-light transition-colors"
           >
             {showAddRow ? "Cancel" : "+ Add Industry"}
           </button>
@@ -241,7 +241,7 @@ export default function ContactMappingTable({
               onChange={(e) =>
                 setNewContact({ ...newContact, primaryIndustry: e.target.value })
               }
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
             <input
               type="text"
@@ -250,7 +250,7 @@ export default function ContactMappingTable({
               onChange={(e) =>
                 setNewContact({ ...newContact, selName: e.target.value })
               }
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
             <input
               type="email"
@@ -259,7 +259,7 @@ export default function ContactMappingTable({
               onChange={(e) =>
                 setNewContact({ ...newContact, selEmail: e.target.value })
               }
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
             <input
               type="text"
@@ -268,7 +268,7 @@ export default function ContactMappingTable({
               onChange={(e) =>
                 setNewContact({ ...newContact, opsManagerName: e.target.value })
               }
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
             <input
               type="email"
@@ -280,7 +280,7 @@ export default function ContactMappingTable({
                   opsManagerEmail: e.target.value,
                 })
               }
-              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+              className="rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
             />
             <button
               onClick={handleAdd}
@@ -325,7 +325,7 @@ export default function ContactMappingTable({
                           if (e.key === "Escape") setEditingCell(null);
                         }}
                         autoFocus
-                        className="w-full rounded border border-blue-500 bg-slate-800 px-2 py-1 text-sm text-slate-200 focus:outline-none"
+                        className="w-full rounded border border-deloitte bg-slate-800 px-2 py-1 text-sm text-slate-200 focus:outline-none"
                       />
                     ) : (
                       <span

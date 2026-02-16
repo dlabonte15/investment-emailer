@@ -109,7 +109,7 @@ export default function GeneralSettings() {
             <select
               value={settings.sendAsHtml ? "html" : "plain"}
               onChange={(e) => update("sendAsHtml", e.target.value === "html")}
-              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             >
               <option value="html">HTML</option>
               <option value="plain">Plain Text</option>
@@ -136,7 +136,7 @@ export default function GeneralSettings() {
             <select
               value={settings.dataSourceType}
               onChange={(e) => update("dataSourceType", e.target.value)}
-              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             >
               <option value="upload">Manual Upload</option>
               <option value="onedrive">OneDrive (Graph API)</option>
@@ -170,7 +170,7 @@ export default function GeneralSettings() {
                   parseInt(e.target.value) || 7
                 )
               }
-              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             />
           </div>
         </div>
@@ -196,7 +196,7 @@ export default function GeneralSettings() {
                   parseInt(e.target.value) || 7
                 )
               }
-              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             />
           </div>
           <div>
@@ -213,7 +213,7 @@ export default function GeneralSettings() {
                   parseInt(e.target.value) || 3
                 )
               }
-              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 focus:border-deloitte focus:outline-none"
             />
           </div>
         </div>
@@ -259,7 +259,7 @@ export default function GeneralSettings() {
             type="checkbox"
             checked={settings.enableOpenTracking}
             onChange={(e) => update("enableOpenTracking", e.target.checked)}
-            className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-blue-500 focus:ring-blue-500"
+            className="h-4 w-4 rounded border-slate-600 bg-slate-800 text-deloitte focus:ring-deloitte"
           />
           <span className="text-sm text-slate-300">
             Enable open tracking (embeds 1x1 tracking pixel in HTML emails)
@@ -272,7 +272,7 @@ export default function GeneralSettings() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 disabled:opacity-50 transition-colors"
+          className="rounded-md bg-deloitte px-4 py-2 text-sm font-medium text-white hover:bg-deloitte-light disabled:opacity-50 transition-colors"
         >
           {saving ? "Saving..." : "Save Settings"}
         </button>
@@ -302,7 +302,7 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+        className="w-full rounded-md border border-slate-600 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:outline-none"
       />
     </div>
   );

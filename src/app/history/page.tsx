@@ -56,7 +56,7 @@ interface BatchDetail {
 
 const statusColors: Record<string, string> = {
   pending_approval: "bg-amber-500/20 text-amber-400",
-  approved: "bg-blue-500/20 text-blue-400",
+  approved: "bg-deloitte/20 text-deloitte",
   sending: "bg-purple-500/20 text-purple-400",
   completed: "bg-emerald-500/20 text-emerald-400",
 };
@@ -438,7 +438,7 @@ export default function HistoryPage() {
             setFilterSearch(e.target.value);
             setPage(1);
           }}
-          className="flex-1 px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none"
+          className="flex-1 px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 placeholder:text-slate-500 focus:border-deloitte focus:ring-1 focus:ring-deloitte/30 focus:outline-none"
         />
         <select
           value={filterStatus}
@@ -446,7 +446,7 @@ export default function HistoryPage() {
             setFilterStatus(e.target.value);
             setPage(1);
           }}
-          className="px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 focus:outline-none"
+          className="px-3 py-2 text-sm bg-slate-900 border border-slate-700 rounded-md text-slate-200 focus:border-deloitte focus:ring-1 focus:ring-deloitte/30 focus:outline-none"
         >
           <option value="">All statuses</option>
           <option value="pending_approval">Pending Approval</option>
@@ -576,7 +576,7 @@ export default function HistoryPage() {
                       onClick={() => setPage(pageNum)}
                       className={`px-2.5 py-1 text-xs rounded-md border ${
                         page === pageNum
-                          ? "bg-blue-600 text-white border-blue-500"
+                          ? "bg-deloitte text-white border-deloitte"
                           : "text-slate-400 border-slate-700 hover:bg-slate-800"
                       }`}
                     >

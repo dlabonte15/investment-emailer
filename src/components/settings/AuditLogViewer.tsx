@@ -69,7 +69,7 @@ export default function AuditLogViewer() {
         <select
           value={entityFilter}
           onChange={(e) => setEntityFilter(e.target.value)}
-          className="rounded-md border border-slate-600 bg-slate-800 px-3 py-1.5 text-xs text-slate-200 focus:border-blue-500 focus:outline-none"
+          className="rounded-md border border-slate-600 bg-slate-800 px-3 py-1.5 text-xs text-slate-200 focus:border-deloitte focus:outline-none"
         >
           <option value="">All Types</option>
           {ENTITY_TYPES.map((t) => (
@@ -107,7 +107,7 @@ export default function AuditLogViewer() {
                         ? "bg-red-900/30 text-red-400"
                         : log.action === "create"
                           ? "bg-green-900/30 text-green-400"
-                          : "bg-blue-900/30 text-blue-400"
+                          : "bg-deloitte-dark/30 text-deloitte"
                     }`}
                   >
                     {log.action}

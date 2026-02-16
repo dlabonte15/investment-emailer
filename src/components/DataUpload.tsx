@@ -89,7 +89,7 @@ export default function DataUpload() {
           cursor-pointer transition-colors
           ${
             dragOver
-              ? "border-blue-400 bg-blue-900/10"
+              ? "border-deloitte bg-deloitte-dark/10"
               : "border-slate-600 hover:border-slate-500 bg-slate-900/50"
           }
           ${state === "uploading" ? "pointer-events-none opacity-60" : ""}
@@ -105,7 +105,7 @@ export default function DataUpload() {
 
         {state === "uploading" ? (
           <>
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-500 border-t-blue-400" />
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-500 border-t-deloitte" />
             <p className="mt-3 text-sm text-slate-400">Processing file...</p>
           </>
         ) : (
@@ -190,7 +190,7 @@ export default function DataUpload() {
             <a
               href="/api/data/preview"
               target="_blank"
-              className="text-xs text-blue-400 hover:text-blue-300 underline"
+              className="text-xs text-deloitte hover:text-deloitte-light underline"
             >
               View Preview
             </a>

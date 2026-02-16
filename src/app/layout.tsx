@@ -7,8 +7,8 @@ import Sidebar from "@/components/Sidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Investment Email Automation",
-  description: "Automated investment email management tool",
+  title: "Deloitte | Investment Emailer",
+  description: "Deloitte investment email automation tool",
 };
 
 export default function RootLayout({
